@@ -9,12 +9,7 @@ import streamlit as st
 
 st.set_page_config(page_title="MAICO | Gestión de clientes", page_icon="🦻", layout="wide")
 
-st.sidebar.markdown(
-    """<div style="display:flex;justify-content:center;padding:8px 0 22px 0;">
-    <img src="maico_logo.jpg" style="width:100%;max-width:285px;height:auto;object-fit:contain;">
-    </div>""",
-    unsafe_allow_html=True,
-)
+st.sidebar.image("maico_logo.jpg", use_container_width=True)
 
 st.markdown("""
 <style>
@@ -155,7 +150,7 @@ except Exception as exc:
 st.title("MAICO")
 st.caption("Gestión de clientes, estudios y citas")
 if MODO_DEMO:
-    st.warning("MODO DE PRUEBA: los registros se guardan temporalmente en el archivo local de la aplicación. Configura PostgreSQL para conservarlos de forma permanente.")
+    st.warning("SISTEMA DE PRUEBA: los registros se guardan temporalmente en el archivo local de la aplicación. Configura PostgreSQL para conservarlos de forma permanente.")
 
 menu = st.sidebar.radio("Panel", ["Panel", "Clientes", "Estudios", "Citas", "Buscar"])
 clientes = consultar("SELECT id, nombre, telefono, correo FROM clientes ORDER BY nombre")
