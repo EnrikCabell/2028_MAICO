@@ -25,15 +25,17 @@ st.markdown("""
     background-color: rgba(255,255,255,0.18);
     border-radius: 8px;
 }
-/* Área principal derecha: gris */
-.stApp, [data-testid="stAppViewContainer"] {
-    background-color: #E5E7EB;
-}
-[data-testid="stMain"] {
-    background-color: #E5E7EB;
+/* Panel derecho completo: gris */
+.stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+[data-testid="stMainBlockContainer"],
+section.main,
+section.main > div {
+    background-color: #D1D5DB !important;
 }
 [data-testid="stHeader"] {
-    background-color: rgba(229,231,235,0.95);
+    background-color: #D1D5DB !important;
 }
 /* Superficies de contenido */
 [data-testid="stMetric"],
