@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
+<g fill="none" stroke="#fff" stroke-width="13" stroke-linejoin="round">
+<path d="M48 70 Q130 24 215 70 L215 245 Q130 285 48 245 Z" fill="#082B63"/>
+<path d="M48 172 C78 172 82 105 112 105 S150 235 181 235 S215 105 245 105" stroke-width="0" opacity="0"/>
+<path d="M48 172 C78 172 82 105 112 105 S150 235 181 235 S215 105 245 172" stroke-width="18"/>
+<path d="M255 112 L295 112 L340 225 L385 112 L425 112 L425 245 L390 245 L390 170 L355 245 L325 245 L290 170 L290 245 L255 245 Z" fill="#092E69"/>
+<path d="M455 112 L555 112 L555 145 L490 145 L490 165 L548 165 L548 195 L490 195 L490 212 L558 212 L558 245 L455 245 Z" fill="#092E69"/>
+<path d="M585 112 H650 Q685 112 685 148 V209 Q685 245 650 245 H585 Q550 245 550 209 V148 Q550 112 585 112Z" fill="#092E69"/>
+</g>
+<text x="360" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="48" fill="#8B929B">de México</text>
+</svg>
