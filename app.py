@@ -9,7 +9,10 @@ import streamlit as st
 
 st.set_page_config(page_title="MAICO | Gestión de clientes", page_icon="🦻", layout="wide")
 
-st.sidebar.image("maico_logo.jpg", use_container_width=True)
+st.sidebar.markdown(
+    '<div style="width:100%;text-align:center;padding:10px 6px 22px;"><img src="https://raw.githubusercontent.com/EnrikCabell/2028_MAICO/main/maico_logo.jpg" style="width:100%;max-width:230px;height:auto;object-fit:contain;"></div>',
+    unsafe_allow_html=True,
+)
 
 st.markdown("""
 <style>
