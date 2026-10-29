@@ -20,6 +20,14 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
+<div style="display:flex;justify-content:flex-end;align-items:flex-start;width:100%;margin:-8px 0 8px 0;">
+  <div style="width:310px;max-width:38vw;background:#D1D5DB;padding:5px 12px;border-radius:0 0 0 12px;">
+    <img src="https://raw.githubusercontent.com/EnrikCabell/2028_MAICO/main/maico_header_logo.svg" style="display:block;width:100%;height:auto;" alt="MAICO de México">
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
 <style>
 /* Panel izquierdo: azul rey */
 [data-testid="stSidebar"] {
