@@ -20,9 +20,14 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<div style="display:flex;justify-content:flex-end;align-items:flex-start;width:100%;margin:-8px 0 8px 0;">
-  <div style="width:310px;max-width:38vw;background:#D1D5DB;padding:5px 12px;border-radius:0 0 0 12px;">
-    <img src="https://raw.githubusercontent.com/EnrikCabell/2028_MAICO/main/maico_header_logo.svg" style="display:block;width:100%;height:auto;" alt="MAICO de México">
+<div style="display:flex;justify-content:flex-end;width:100%;margin:-8px 0 8px 0;">
+  <div style="width:260px;max-width:34vw;background:#D1D5DB;border:2px solid #FFFFFF;border-radius:12px;padding:8px 12px;">
+    <svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México" style="display:block;width:100%;height:auto;">
+      <path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
+      <path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
+      <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
+      <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888">de México</text>
+    </svg>
   </div>
 </div>
 """, unsafe_allow_html=True)
