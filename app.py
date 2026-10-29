@@ -10,26 +10,20 @@ import streamlit as st
 st.set_page_config(page_title="MAICO | Gestión de clientes", page_icon="🦻", layout="wide")
 
 st.sidebar.markdown("""
-<div style="width:100%;text-align:center;padding:8px 4px 18px;">
-<svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México" style="width:100%;max-width:260px;height:auto;">
-<path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
-<path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
-<text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
-<text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888">de México</text>
-</svg></div>
+<div style="width:100%;padding:8px 5px 18px;text-align:center;">
+<img src="https://raw.githubusercontent.com/EnrikCabell/2028_MAICO/main/maico_logo_oficial.svg" alt="MAICO de México" style="display:block;width:100%;height:auto;object-fit:contain;border:2px solid #FFFFFF;border-radius:10px;">
+</div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
 <div style="display:flex;justify-content:flex-end;width:100%;margin:-8px 0 8px 0;">
-  <div style="width:260px;max-width:34vw;background:#D1D5DB;border:2px solid #FFFFFF;border-radius:12px;padding:8px 12px;">
-    <svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México" style="display:block;width:100%;height:auto;">
-      <path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
-      <path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
-      <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
-      <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888">de México</text>
-    </svg>
-  </div>
-</div>
+<div style="width:170px;max-width:30vw;background:#D1D5DB;border:2px solid #FFFFFF;border-radius:10px;padding:5px 8px;text-align:center;">
+<svg viewBox="0 0 180 118" role="img" aria-label="MAICO" style="display:block;width:100%;height:auto;">
+<path d="M28 8 Q90 -2 152 8 L152 70 Q90 94 28 70 Z" fill="#064675"/>
+<path d="M28 47 C47 47 49 21 67 21 S87 72 105 72 S133 21 152 47" fill="none" stroke="white" stroke-width="10" stroke-linecap="round"/>
+<text x="90" y="99" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#064675">MAICO</text>
+<text x="90" y="115" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-style="italic" fill="#777">de México</text>
+</svg></div></div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
