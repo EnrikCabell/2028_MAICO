@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360">
-<g fill="none" stroke="#fff" stroke-width="13" stroke-linejoin="round">
-<path d="M48 70 Q130 24 215 70 L215 245 Q130 285 48 245 Z" fill="#082B63"/>
-<path d="M48 172 C78 172 82 105 112 105 S150 235 181 235 S215 105 245 105" stroke-width="0" opacity="0"/>
-<path d="M48 172 C78 172 82 105 112 105 S150 235 181 235 S215 105 245 172" stroke-width="18"/>
-<path d="M255 112 L295 112 L340 225 L385 112 L425 112 L425 245 L390 245 L390 170 L355 245 L325 245 L290 170 L290 245 L255 245 Z" fill="#092E69"/>
-<path d="M455 112 L555 112 L555 145 L490 145 L490 165 L548 165 L548 195 L490 195 L490 212 L558 212 L558 245 L455 245 Z" fill="#092E69"/>
-<path d="M585 112 H650 Q685 112 685 148 V209 Q685 245 650 245 H585 Q550 245 550 209 V148 Q550 112 585 112Z" fill="#092E69"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360">
+<g stroke="#FFFFFF" stroke-width="15" stroke-linejoin="round" stroke-linecap="round">
+<path d="M45 55 Q180 5 315 55 L315 275 Q180 325 45 275 Z" fill="#082B63"/>
+<path d="M45 170 C90 170 100 85 145 85 S220 255 265 255 S315 85 360 170" fill="none" stroke-width="22"/>
+<path d="M360 85 L415 85 L475 245 L535 85 L590 85 L590 270 L535 270 L535 175 L500 270 L450 270 L415 175 L415 270 L360 270 Z" fill="#082B63"/>
+<path d="M625 85 H825 V135 H685 V155 H805 V205 H685 V220 H830 V270 H625 Z" fill="#082B63"/>
+<path d="M895 85 H1035 Q1110 85 1110 160 V195 Q1110 270 1035 270 H895 Q820 270 820 195 V160 Q820 85 895 85 Z" fill="#082B63"/>
 </g>
-<text x="360" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="48" fill="#8B929B">de México</text>
+<text x="735" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="58" font-style="italic" font-weight="600" fill="#858B94">de México</text>
+<path d="M420 310 H540 M930 310 H1050" stroke="#858B94" stroke-width="7"/>
 </svg>
