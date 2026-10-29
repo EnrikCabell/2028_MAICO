@@ -9,6 +9,49 @@ import streamlit as st
 
 st.set_page_config(page_title="MAICO | Gestión de clientes", page_icon="🦻", layout="wide")
 
+st.markdown("""
+<style>
+/* Panel izquierdo: azul rey */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #173A8A 0%, #102B68 100%);
+}
+[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadio"] label {
+    color: #FFFFFF !important;
+}
+[data-testid="stSidebar"] [aria-checked="true"] {
+    background-color: rgba(255,255,255,0.18);
+    border-radius: 8px;
+}
+/* Área principal derecha: gris */
+.stApp, [data-testid="stAppViewContainer"] {
+    background-color: #E5E7EB;
+}
+[data-testid="stMain"] {
+    background-color: #E5E7EB;
+}
+[data-testid="stHeader"] {
+    background-color: rgba(229,231,235,0.95);
+}
+/* Superficies de contenido */
+[data-testid="stMetric"],
+[data-testid="stForm"],
+[data-testid="stExpander"],
+div[data-testid="stDataFrame"] {
+    background-color: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 8px;
+}
+h1, h2, h3, p, label, [data-testid="stMarkdownContainer"] {
+    color: #1F2937;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 def obtener_url():
     url = os.getenv("DATABASE_URL")
     if not url:
