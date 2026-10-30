@@ -54,12 +54,12 @@ div[data-testid="stDataFrame"], [data-testid="stTable"] {
 .stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
 .stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
 input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
-.top-brand { display:flex; align-items:center; justify-content:flex-end; width:100%; margin:-90px 0 12px; position:relative; top:90px; pointer-events:none; }
+.top-brand { display:flex; align-items:center; justify-content:flex-end; width:100%; margin:0 0 12px; position:relative; transform:translateY(70px); z-index:2; pointer-events:none; }
 .top-brand-logo { display:block; width:174px; max-width:100%; height:auto; padding:5px 9px; background:#FFFFFF; border:1px solid #D1D5DB; border-radius:8px; box-sizing:border-box; }
 .top-brand-logo svg { display:block; width:100%; height:auto; }
 .legal-footer { margin-top:3.5rem; padding:22px 10px 10px; border-top:1px solid rgba(255,255,255,.24); text-align:center; color:#D1D5DB; font:italic 13px/1.65 Arial,sans-serif; }
 @media (max-width: 768px) {
-  .top-brand { margin-top:-90px; margin-bottom:5px; }
+  .top-brand { margin-top:0; margin-bottom:5px; transform:translateY(70px); }
   .top-brand-logo { width:148px; }
   .legal-footer { font-size:11px; padding-left:4px; padding-right:4px; }
 }
