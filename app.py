@@ -54,15 +54,13 @@ div[data-testid="stDataFrame"], [data-testid="stTable"] {
 .stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
 .stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
 input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
-.top-brand { display:flex; align-items:center; justify-content:flex-end; gap:9px; width:100%; margin:0 0 8px; color:#176B87; font:800 14px Arial,sans-serif; letter-spacing:2px; }
-.top-brand svg { width:46px; height:46px; flex:0 0 46px; transform:scaleX(-1); }
-.top-brand-copy { display:flex; flex-direction:column; align-items:flex-start; gap:3px; }
-.top-brand-tag { color:#176B87; font:800 13px Arial,sans-serif; letter-spacing:1.1px; }
-.top-brand-by { color:#64788A; font:600 9px Arial,sans-serif; letter-spacing:1.8px; }
+.top-brand { display:flex; align-items:center; justify-content:flex-end; width:100%; margin:0 0 12px; }
+.top-brand-logo { display:block; width:174px; max-width:100%; height:auto; padding:5px 9px; background:#FFFFFF; border:1px solid #D1D5DB; border-radius:8px; box-sizing:border-box; }
+.top-brand-logo svg { display:block; width:100%; height:auto; }
 .legal-footer { margin-top:3.5rem; padding:22px 10px 10px; border-top:1px solid rgba(255,255,255,.24); text-align:center; color:#D1D5DB; font:italic 13px/1.65 Arial,sans-serif; }
 @media (max-width: 768px) {
   .top-brand { margin-top:0; margin-bottom:5px; }
-  .top-brand svg { width:42px; height:42px; flex-basis:42px; }
+  .top-brand-logo { width:148px; }
   .legal-footer { font-size:11px; padding-left:4px; padding-right:4px; }
 }
 </style>
@@ -161,18 +159,15 @@ except Exception as exc:
     st.stop()
 
 st.markdown("""
-<div class="top-brand" aria-label="BIOMEDICS">
-  <svg viewBox="0 0 96 96" role="img" aria-label="BIOMEDICS">
-    <path d="M56 12c-20 0-34 15-34 35 0 14 7 23 17 28 6 3 8 7 8 13" fill="none" stroke="#176B87" stroke-width="7" stroke-linecap="round"/>
-    <path d="M56 27c-11 0-19 8-19 20 0 8 4 13 10 17 5 3 8 7 8 13" fill="none" stroke="#54D6D0" stroke-width="6" stroke-linecap="round"/>
-    <path d="M63 38c7 4 11 10 11 18" fill="none" stroke="#176B87" stroke-width="6" stroke-linecap="round"/>
-    <circle cx="74" cy="61" r="5" fill="#54D6D0"/>
-  </svg>
-  <div class="top-brand-copy">
-    <span class="top-brand-tag">EXPERTOS EN AUDICIÓN</span>
-    <span class="top-brand-by">BY BIOMEDICS</span>
+<div class="top-brand" aria-label="MAICO de México">
+  <div class="top-brand-logo">
+    <svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México">
+      <path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
+      <path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
+      <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
+      <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888" stroke="#064675" stroke-width="1.8" stroke-linejoin="round" paint-order="stroke fill">de México</text>
+    </svg>
   </div>
-</div>
 """, unsafe_allow_html=True)
 
 st.title("MAICO")
