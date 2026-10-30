@@ -61,6 +61,8 @@ input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
 .top-brand-logo { display:block; width:174px; max-width:100%; height:auto; padding:5px 9px; background:#FFFFFF; border:1px solid #D1D5DB; border-radius:8px; box-sizing:border-box; }
 .top-brand-logo svg { display:block; width:100%; height:auto; }
 .legal-footer { margin-top:3.5rem; padding:22px 10px 10px; border-top:1px solid rgba(255,255,255,.24); text-align:center; color:#D1D5DB; font:italic 13px/1.65 Arial,sans-serif; }
+.demo-warning { margin:0 0 1rem; padding:10px 14px; border:1px solid rgba(255,255,255,.35); border-radius:9px; background:rgba(255,255,255,.10); color:#FFFFFF; font-size:13px; }
+@media (max-width: 768px) { .demo-warning { display:none !important; } }
 @media (max-width: 768px) {
   .block-container { padding:1rem .75rem 2rem !important; }
   .top-brand { margin:0 0 8px !important; transform:none !important; }
@@ -193,7 +195,9 @@ st.markdown("""
 st.title("MAICO")
 st.caption("Gestión de clientes, estudios y citas")
 if MODO_DEMO:
-    st.warning("SISTEMA DE PRUEBA: los registros se guardan temporalmente en el archivo local de la aplicación. Configura PostgreSQL para conservarlos de forma permanente.")
+    st.markdown("""
+    <div class="demo-warning">SISTEMA DE PRUEBA: los registros se guardan temporalmente en el archivo local de la aplicación. Configura PostgreSQL para conservarlos de forma permanente.</div>
+    """, unsafe_allow_html=True)
 
 menu = st.sidebar.radio("Panel", ["Panel", "Clientes", "Estudios", "Citas", "Buscar"])
 clientes = consultar("SELECT id AS KEY, nombre, telefono, correo FROM clientes ORDER BY nombre")
