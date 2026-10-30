@@ -33,7 +33,7 @@ st.markdown("""
 [data-testid="stSidebar"] [data-testid="stRadio"] label {
     color: #1F2937 !important;
 }
-[data-testid="stSidebar"] [aria-checked="true"] {
+[data-testid="stSidebar"] input[type="radio"] { accent-color: #173A8A !important; }\n[data-testid="stSidebar"] [role="radio"] > div:first-child { border-color: #173A8A !important; }\n[data-testid="stSidebar"] [aria-checked="true"] {
     background-color: rgba(255,255,255,0.18);
     border-radius: 8px;
 }
@@ -163,7 +163,7 @@ if MODO_DEMO:
     st.warning("SISTEMA DE PRUEBA: los registros se guardan temporalmente en el archivo local de la aplicación. Configura PostgreSQL para conservarlos de forma permanente.")
 
 menu = st.sidebar.radio("Panel", ["Panel", "Clientes", "Estudios", "Citas", "Buscar"])
-clientes = consultar("SELECT id, nombre, telefono, correo FROM clientes ORDER BY nombre")
+clientes = consultar("SELECT id AS KEY, nombre, telefono, correo FROM clientes ORDER BY nombre")
 
 if menu == "Panel":
     a, b, c = st.columns(3)
@@ -171,13 +171,13 @@ if menu == "Panel":
     b.metric("Estudios registrados", int(consultar("SELECT COUNT(*) n FROM estudios").iloc[0,0]))
     c.metric("Citas registradas", int(consultar("SELECT COUNT(*) n FROM citas").iloc[0,0]))
     st.subheader("Citas registradas")
-    citas = consultar("""SELECT c.id, cl.nombre AS Cliente, c.fecha AS Fecha, c.hora AS Hora,
+    citas = consultar("""SELECT c.id AS KEY, cl.nombre AS Cliente, c.fecha AS Fecha, c.hora AS Hora,
         c.motivo AS Motivo, c.estado AS Estado
         FROM citas c JOIN clientes cl ON cl.id=c.cliente_id
         ORDER BY c.fecha, c.hora""")
     st.dataframe(citas, use_container_width=True, hide_index=True)
     st.subheader("Clientes recientes")
-    st.dataframe(consultar("SELECT id, nombre, telefono, correo FROM clientes ORDER BY id DESC LIMIT 8"),
+    st.dataframe(consultar("SELECT id AS KEY, nombre, telefono, correo FROM clientes ORDER BY id DESC LIMIT 8"),
                  use_container_width=True, hide_index=True)
 
 elif menu == "Clientes":
@@ -199,11 +199,11 @@ elif menu == "Clientes":
                 st.success("Cliente guardado.")
                 st.rerun()
     st.subheader("Directorio de clientes")
-    st.dataframe(consultar("SELECT id, nombre, telefono, correo, direccion, notas FROM clientes ORDER BY nombre"),
+    st.dataframe(consultar("SELECT id AS KEY, nombre, telefono, correo, direccion, notas FROM clientes ORDER BY nombre"),
                  use_container_width=True, hide_index=True)
     if not clientes.empty:
         with st.expander("Editar o eliminar cliente"):
-            elegido = st.selectbox("Cliente", clientes.itertuples(index=False), format_func=lambda x: f"{x.nombre} · ID {x.id}")
+            elegido = st.selectbox("Cliente", clientes.itertuples(index=False), format_func=lambda x: f"{x.nombre} · KEY {x.id}")
             datos = consultar("SELECT nombre,telefono,correo,direccion,notas FROM clientes WHERE id=?", (int(elegido.id),)).iloc[0]
             with st.form("editar_cliente"):
                 n = st.text_input("Nombre", datos["nombre"])
@@ -242,7 +242,7 @@ elif menu == "Estudios":
                 st.success("Estudio guardado.")
                 st.rerun()
     st.subheader("Historial de estudios")
-    estudios = consultar("""SELECT e.id, cl.nombre AS Cliente, e.fecha AS Fecha, e.tipo AS Estudio,
+    estudios = consultar("""SELECT e.id AS KEY, cl.nombre AS Cliente, e.fecha AS Fecha, e.tipo AS Estudio,
         e.resultado AS Resultados, e.observaciones AS Observaciones
         FROM estudios e JOIN clientes cl ON cl.id=e.cliente_id ORDER BY e.fecha DESC, e.id DESC""")
     st.dataframe(estudios, use_container_width=True, hide_index=True)
@@ -267,7 +267,7 @@ elif menu == "Citas":
                 st.success("Cita guardada.")
                 st.rerun()
     st.subheader("Agenda")
-    agenda = consultar("""SELECT c.id, cl.nombre AS Cliente, cl.telefono AS Teléfono,
+    agenda = consultar("""SELECT c.id AS KEY, cl.nombre AS Cliente, cl.telefono AS Teléfono,
         c.fecha AS Fecha, c.hora AS Hora, c.motivo AS Motivo, c.estado AS Estado, c.notas AS Notas
         FROM citas c JOIN clientes cl ON cl.id=c.cliente_id ORDER BY c.fecha, c.hora""")
     st.dataframe(agenda, use_container_width=True, hide_index=True)
