@@ -23,45 +23,37 @@ st.sidebar.markdown("""
 
 st.markdown("""
 <style>
-/* Panel izquierdo: gris */
-[data-testid="stSidebar"] {
-    background: #D1D5DB !important;
+:root { --maico-blue:#173A8A; --maico-deep:#102D67; }
+[data-testid="stSidebar"] { background:#D1D5DB !important; border-right:1px solid #B7C0CC; }
+[data-testid="stSidebar"] * { color:#1F2937 !important; }
+[data-testid="stSidebar"] [data-testid="stRadio"] label { color:#1F2937 !important; }
+[data-testid="stSidebar"] input[type="radio"] { accent-color:#173A8A !important; }
+[data-testid="stSidebar"] [data-baseweb="radio"] > div:first-child { border:2px solid #173A8A !important; }
+[data-testid="stSidebar"] [data-baseweb="radio"] input:checked + div,
+[data-testid="stSidebar"] [role="radio"][aria-checked="true"] > div:first-child { background:#173A8A !important; border-color:#173A8A !important; }
+[data-testid="stSidebar"] [aria-checked="true"] { background:rgba(23,58,138,.10) !important; border-radius:9px; }
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], [data-testid="stMainBlockContainer"], section.main, section.main > div { background:#173A8A !important; }
+[data-testid="stHeader"] { background:#D1D5DB !important; }
+.block-container { padding-top:2rem; padding-bottom:3rem; max-width:1500px; }
+h1,h2,h3,p,label,[data-testid="stMarkdownContainer"],[data-testid="stCaptionContainer"] { color:#FFFFFF !important; }
+[data-testid="stMetric"], [data-testid="stForm"], [data-testid="stExpander"],
+div[data-testid="stDataFrame"], [data-testid="stTable"] {
+ background:transparent !important;
+ background-color:transparent !important;
+ border:1px solid rgba(255,255,255,.24) !important;
+ border-radius:12px !important;
+ padding:10px !important;
+ box-shadow:none !important;
 }
-[data-testid="stSidebar"] * {
-    color: #1F2937 !important;
-}
-[data-testid="stSidebar"] [data-testid="stRadio"] label {
-    color: #1F2937 !important;
-}
-[data-testid="stSidebar"] input[type="radio"] { accent-color: #173A8A !important; }\n[data-testid="stSidebar"] [role="radio"] > div:first-child { border-color: #173A8A !important; }\n[data-testid="stSidebar"] [aria-checked="true"] {
-    background-color: rgba(255,255,255,0.18);
-    border-radius: 8px;
-}
-/* Panel derecho completo: azul */
-.stApp,
-[data-testid="stAppViewContainer"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"],
-section.main,
-section.main > div {
-    background-color: #173A8A !important;
-}
-[data-testid="stHeader"] {
-    background-color: #D1D5DB !important;
-}
-/* Superficies de contenido */
-[data-testid="stMetric"],
-[data-testid="stForm"],
-[data-testid="stExpander"],
-div[data-testid="stDataFrame"] {
-    background-color: #F8FAFC;
-    border: 1px solid #CBD5E1;
-    border-radius: 10px;
-    padding: 8px;
-}
-h1, h2, h3, p, label, [data-testid="stMarkdownContainer"] {
-    color: #FFFFFF;
-}
+[data-testid="stMetricLabel"],[data-testid="stMetricValue"] { color:#FFFFFF !important; }
+[data-testid="stDataFrame"] [data-testid="stDataFrameResizable"],
+[data-testid="stDataFrame"] iframe { background:transparent !important; }
+[data-testid="stForm"] [data-testid="stVerticalBlock"],
+[data-testid="stExpander"] details,
+[data-testid="stMetric"] > div { background:transparent !important; }
+.stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
+.stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
+input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
 </style>
 """, unsafe_allow_html=True)
 
