@@ -14,7 +14,7 @@ st.sidebar.markdown("""
   <svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México" style="width:100%;max-width:260px;height:auto;">
     <path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
     <path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
-    <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
+    <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke fill">MAICO</text>
     <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888">de México</text>
   </svg>
 </div>
