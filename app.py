@@ -23,45 +23,28 @@ st.sidebar.markdown("""
 
 st.markdown("""
 <style>
-/* Panel izquierdo: gris */
-[data-testid="stSidebar"] {
-    background: #D1D5DB !important;
+:root { --maico-blue:#173A8A; --maico-deep:#102D67; }
+[data-testid="stSidebar"] { background:#D1D5DB !important; border-right:1px solid #B7C0CC; }
+[data-testid="stSidebar"] * { color:#1F2937 !important; }
+[data-testid="stSidebar"] [data-testid="stRadio"] label { color:#1F2937 !important; }
+[data-testid="stSidebar"] input[type="radio"] { accent-color:#173A8A !important; }
+[data-testid="stSidebar"] [role="radio"] { padding:8px 10px; border-radius:9px; }
+[data-testid="stSidebar"] [role="radio"] > div:first-child { border:2px solid #173A8A !important; background:transparent !important; }
+[data-testid="stSidebar"] [role="radio"][aria-checked="true"] > div:first-child { background:#173A8A !important; box-shadow:inset 0 0 0 3px #D1D5DB !important; }
+[data-testid="stSidebar"] [aria-checked="true"] { background:rgba(23,58,138,.10) !important; border-radius:9px; }
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], [data-testid="stMainBlockContainer"], section.main, section.main > div { background:#173A8A !important; }
+[data-testid="stHeader"] { background:#D1D5DB !important; }
+.block-container { padding-top:2rem; padding-bottom:3rem; max-width:1500px; }
+h1,h2,h3,p,label,[data-testid="stMarkdownContainer"],[data-testid="stCaptionContainer"] { color:#FFFFFF !important; }
+[data-testid="stMetric"], [data-testid="stForm"], [data-testid="stExpander"], div[data-testid="stDataFrame"] {
+ background:transparent !important; border:1px solid rgba(255,255,255,.24) !important;
+ border-radius:12px !important; padding:10px !important; box-shadow:none !important;
 }
-[data-testid="stSidebar"] * {
-    color: #1F2937 !important;
-}
-[data-testid="stSidebar"] [data-testid="stRadio"] label {
-    color: #1F2937 !important;
-}
-[data-testid="stSidebar"] input[type="radio"] { accent-color: #173A8A !important; }\n[data-testid="stSidebar"] [role="radio"] > div:first-child { border-color: #173A8A !important; }\n[data-testid="stSidebar"] [aria-checked="true"] {
-    background-color: rgba(255,255,255,0.18);
-    border-radius: 8px;
-}
-/* Panel derecho completo: azul */
-.stApp,
-[data-testid="stAppViewContainer"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"],
-section.main,
-section.main > div {
-    background-color: #173A8A !important;
-}
-[data-testid="stHeader"] {
-    background-color: #D1D5DB !important;
-}
-/* Superficies de contenido */
-[data-testid="stMetric"],
-[data-testid="stForm"],
-[data-testid="stExpander"],
-div[data-testid="stDataFrame"] {
-    background-color: #F8FAFC;
-    border: 1px solid #CBD5E1;
-    border-radius: 10px;
-    padding: 8px;
-}
-h1, h2, h3, p, label, [data-testid="stMarkdownContainer"] {
-    color: #FFFFFF;
-}
+[data-testid="stMetricLabel"],[data-testid="stMetricValue"] { color:#FFFFFF !important; }
+[data-testid="stDataFrame"] [data-testid="stDataFrameResizable"], [data-testid="stDataFrame"] iframe { background:transparent !important; }
+.stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
+.stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
+input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -216,11 +199,11 @@ elif menu == "Clientes":
                 eliminar = x2.form_submit_button("Eliminar cliente")
                 if actualizar:
                     ejecutar("UPDATE clientes SET nombre=?,telefono=?,correo=?,direccion=?,notas=? WHERE id=?",
-                             (n.strip(),t.strip(),e.strip(),d.strip(),no.strip(),int(elegido.id)))
+                             (n.strip(),t.strip(),e.strip(),d.strip(),no.strip(),int(elegido.KEY)))
                     st.success("Cambios guardados.")
                     st.rerun()
                 if eliminar:
-                    ejecutar("DELETE FROM clientes WHERE id=?", (int(elegido.id),))
+                    ejecutar("DELETE FROM clientes WHERE id=?", (int(elegido.KEY),))
                     st.success("Cliente eliminado junto con sus registros.")
                     st.rerun()
 
@@ -263,7 +246,7 @@ elif menu == "Citas":
             guardar = st.form_submit_button("Guardar cita", type="primary")
             if guardar:
                 ejecutar("INSERT INTO citas(cliente_id,fecha,hora,motivo,estado,notas) VALUES(?,?,?,?,?,?)",
-                         (int(cli.id), fecha.isoformat(), hora.strftime("%H:%M"), motivo.strip(), estado, notas.strip()))
+                         (int(cli.KEY), fecha.isoformat(), hora.strftime("%H:%M"), motivo.strip(), estado, notas.strip()))
                 st.success("Cita guardada.")
                 st.rerun()
     st.subheader("Agenda")
@@ -283,7 +266,7 @@ elif menu == "Citas":
                 st.success("Estado actualizado.")
                 st.rerun()
             if z2.button("Eliminar cita"):
-                ejecutar("DELETE FROM citas WHERE id=?", (int(cita.id),))
+                ejecutar("DELETE FROM citas WHERE id=?", (int(cita.KEY),))
                 st.success("Cita eliminada.")
                 st.rerun()
 
@@ -306,28 +289,25 @@ elif menu == "Buscar":
                 FROM citas c JOIN clientes cl ON cl.id=c.cliente_id WHERE c.cliente_id IN ({marcas}) ORDER BY c.fecha,c.hora""", ids),
                 use_container_width=True, hide_index=True)st.markdown("""
 <style>
-:root { --maico-blue:#173A8A; --maico-deep:#102D67; --maico-panel:#D1D5DB; --maico-ink:#172B4D; }
+:root { --maico-blue:#173A8A; --maico-deep:#102D67; }
 [data-testid="stSidebar"] { background:#D1D5DB !important; border-right:1px solid #B7C0CC; }
 [data-testid="stSidebar"] * { color:#1F2937 !important; }
 [data-testid="stSidebar"] [data-testid="stRadio"] label { color:#1F2937 !important; }
 [data-testid="stSidebar"] input[type="radio"] { accent-color:#173A8A !important; }
 [data-testid="stSidebar"] [role="radio"] { padding:8px 10px; border-radius:9px; }
 [data-testid="stSidebar"] [role="radio"] > div:first-child { border:2px solid #173A8A !important; background:transparent !important; }
-[data-testid="stSidebar"] [role="radio"][aria-checked="true"] > div:first-child,
-[data-testid="stSidebar"] [aria-checked="true"] [data-testid="stMarkdownContainer"] { color:#173A8A !important; }
 [data-testid="stSidebar"] [role="radio"][aria-checked="true"] > div:first-child { background:#173A8A !important; box-shadow:inset 0 0 0 3px #D1D5DB !important; }
 [data-testid="stSidebar"] [aria-checked="true"] { background:rgba(23,58,138,.10) !important; border-radius:9px; }
-.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], [data-testid="stMainBlockContainer"], section.main, section.main > div { background-color:#173A8A !important; }
-[data-testid="stHeader"] { background-color:#D1D5DB !important; }
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], [data-testid="stMainBlockContainer"], section.main, section.main > div { background:#173A8A !important; }
+[data-testid="stHeader"] { background:#D1D5DB !important; }
 .block-container { padding-top:2rem; padding-bottom:3rem; max-width:1500px; }
 h1,h2,h3,p,label,[data-testid="stMarkdownContainer"],[data-testid="stCaptionContainer"] { color:#FFFFFF !important; }
 [data-testid="stMetric"], [data-testid="stForm"], [data-testid="stExpander"], div[data-testid="stDataFrame"] {
- background:rgba(255,255,255,.055) !important; border:1px solid rgba(255,255,255,.22) !important;
+ background:transparent !important; border:1px solid rgba(255,255,255,.24) !important;
  border-radius:12px !important; padding:10px !important; box-shadow:none !important;
 }
 [data-testid="stMetricLabel"],[data-testid="stMetricValue"] { color:#FFFFFF !important; }
-[data-testid="stDataFrame"] [data-testid="stDataFrameResizable"] { background:transparent !important; }
-[data-testid="stDataFrame"] iframe { background:transparent !important; }
+[data-testid="stDataFrame"] [data-testid="stDataFrameResizable"], [data-testid="stDataFrame"] iframe { background:transparent !important; }
 .stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
 .stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
 input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
@@ -355,45 +335,28 @@ st.sidebar.markdown("""
 
 st.markdown("""
 <style>
-/* Panel izquierdo: gris */
-[data-testid="stSidebar"] {
-    background: #D1D5DB !important;
+:root { --maico-blue:#173A8A; --maico-deep:#102D67; }
+[data-testid="stSidebar"] { background:#D1D5DB !important; border-right:1px solid #B7C0CC; }
+[data-testid="stSidebar"] * { color:#1F2937 !important; }
+[data-testid="stSidebar"] [data-testid="stRadio"] label { color:#1F2937 !important; }
+[data-testid="stSidebar"] input[type="radio"] { accent-color:#173A8A !important; }
+[data-testid="stSidebar"] [role="radio"] { padding:8px 10px; border-radius:9px; }
+[data-testid="stSidebar"] [role="radio"] > div:first-child { border:2px solid #173A8A !important; background:transparent !important; }
+[data-testid="stSidebar"] [role="radio"][aria-checked="true"] > div:first-child { background:#173A8A !important; box-shadow:inset 0 0 0 3px #D1D5DB !important; }
+[data-testid="stSidebar"] [aria-checked="true"] { background:rgba(23,58,138,.10) !important; border-radius:9px; }
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], [data-testid="stMainBlockContainer"], section.main, section.main > div { background:#173A8A !important; }
+[data-testid="stHeader"] { background:#D1D5DB !important; }
+.block-container { padding-top:2rem; padding-bottom:3rem; max-width:1500px; }
+h1,h2,h3,p,label,[data-testid="stMarkdownContainer"],[data-testid="stCaptionContainer"] { color:#FFFFFF !important; }
+[data-testid="stMetric"], [data-testid="stForm"], [data-testid="stExpander"], div[data-testid="stDataFrame"] {
+ background:transparent !important; border:1px solid rgba(255,255,255,.24) !important;
+ border-radius:12px !important; padding:10px !important; box-shadow:none !important;
 }
-[data-testid="stSidebar"] * {
-    color: #1F2937 !important;
-}
-[data-testid="stSidebar"] [data-testid="stRadio"] label {
-    color: #1F2937 !important;
-}
-[data-testid="stSidebar"] input[type="radio"] { accent-color: #173A8A !important; }\n[data-testid="stSidebar"] [role="radio"] > div:first-child { border-color: #173A8A !important; }\n[data-testid="stSidebar"] [aria-checked="true"] {
-    background-color: rgba(255,255,255,0.18);
-    border-radius: 8px;
-}
-/* Panel derecho completo: azul */
-.stApp,
-[data-testid="stAppViewContainer"],
-[data-testid="stMain"],
-[data-testid="stMainBlockContainer"],
-section.main,
-section.main > div {
-    background-color: #173A8A !important;
-}
-[data-testid="stHeader"] {
-    background-color: #D1D5DB !important;
-}
-/* Superficies de contenido */
-[data-testid="stMetric"],
-[data-testid="stForm"],
-[data-testid="stExpander"],
-div[data-testid="stDataFrame"] {
-    background-color: #F8FAFC;
-    border: 1px solid #CBD5E1;
-    border-radius: 10px;
-    padding: 8px;
-}
-h1, h2, h3, p, label, [data-testid="stMarkdownContainer"] {
-    color: #FFFFFF;
-}
+[data-testid="stMetricLabel"],[data-testid="stMetricValue"] { color:#FFFFFF !important; }
+[data-testid="stDataFrame"] [data-testid="stDataFrameResizable"], [data-testid="stDataFrame"] iframe { background:transparent !important; }
+.stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
+.stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
+input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -535,8 +498,8 @@ elif menu == "Clientes":
                  use_container_width=True, hide_index=True)
     if not clientes.empty:
         with st.expander("Editar o eliminar cliente"):
-            elegido = st.selectbox("Cliente", clientes.itertuples(index=False), format_func=lambda x: f"{x.nombre} · KEY {x.id}")
-            datos = consultar("SELECT nombre,telefono,correo,direccion,notas FROM clientes WHERE id=?", (int(elegido.id),)).iloc[0]
+            elegido = st.selectbox("Cliente", clientes.itertuples(index=False), format_func=lambda x: f"{x.nombre} · KEY {x.KEY}")
+            datos = consultar("SELECT nombre,telefono,correo,direccion,notas FROM clientes WHERE id=?", (int(elegido.KEY),)).iloc[0]
             with st.form("editar_cliente"):
                 n = st.text_input("Nombre", datos["nombre"])
                 t = st.text_input("Teléfono", datos["telefono"] or "")
@@ -548,11 +511,11 @@ elif menu == "Clientes":
                 eliminar = x2.form_submit_button("Eliminar cliente")
                 if actualizar:
                     ejecutar("UPDATE clientes SET nombre=?,telefono=?,correo=?,direccion=?,notas=? WHERE id=?",
-                             (n.strip(),t.strip(),e.strip(),d.strip(),no.strip(),int(elegido.id)))
+                             (n.strip(),t.strip(),e.strip(),d.strip(),no.strip(),int(elegido.KEY)))
                     st.success("Cambios guardados.")
                     st.rerun()
                 if eliminar:
-                    ejecutar("DELETE FROM clientes WHERE id=?", (int(elegido.id),))
+                    ejecutar("DELETE FROM clientes WHERE id=?", (int(elegido.KEY),))
                     st.success("Cliente eliminado junto con sus registros.")
                     st.rerun()
 
@@ -570,7 +533,7 @@ elif menu == "Estudios":
             guardar = st.form_submit_button("Guardar estudio", type="primary")
             if guardar:
                 ejecutar("INSERT INTO estudios(cliente_id,fecha,tipo,resultado,observaciones) VALUES(?,?,?,?,?)",
-                         (int(cli.id), fecha.isoformat(), tipo.strip(), resultado.strip(), observaciones.strip()))
+                         (int(cli.KEY), fecha.isoformat(), tipo.strip(), resultado.strip(), observaciones.strip()))
                 st.success("Estudio guardado.")
                 st.rerun()
     st.subheader("Historial de estudios")
@@ -595,7 +558,7 @@ elif menu == "Citas":
             guardar = st.form_submit_button("Guardar cita", type="primary")
             if guardar:
                 ejecutar("INSERT INTO citas(cliente_id,fecha,hora,motivo,estado,notas) VALUES(?,?,?,?,?,?)",
-                         (int(cli.id), fecha.isoformat(), hora.strftime("%H:%M"), motivo.strip(), estado, notas.strip()))
+                         (int(cli.KEY), fecha.isoformat(), hora.strftime("%H:%M"), motivo.strip(), estado, notas.strip()))
                 st.success("Cita guardada.")
                 st.rerun()
     st.subheader("Agenda")
@@ -611,11 +574,11 @@ elif menu == "Citas":
                                         index=["Pendiente", "Confirmada", "Atendida", "Cancelada"].index(cita.Estado))
             z1,z2 = st.columns(2)
             if z1.button("Actualizar estado"):
-                ejecutar("UPDATE citas SET estado=? WHERE id=?", (estado_nuevo, int(cita.id)))
+                ejecutar("UPDATE citas SET estado=? WHERE id=?", (estado_nuevo, int(cita.KEY)))
                 st.success("Estado actualizado.")
                 st.rerun()
             if z2.button("Eliminar cita"):
-                ejecutar("DELETE FROM citas WHERE id=?", (int(cita.id),))
+                ejecutar("DELETE FROM citas WHERE id=?", (int(cita.KEY),))
                 st.success("Cita eliminada.")
                 st.rerun()
 
