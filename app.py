@@ -54,6 +54,14 @@ div[data-testid="stDataFrame"], [data-testid="stTable"] {
 .stButton > button, [data-testid="stFormSubmitButton"] > button { background:#D1D5DB !important; color:#173A8A !important; border:1px solid #D1D5DB !important; border-radius:9px !important; font-weight:700; }
 .stButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover { background:#FFFFFF !important; color:#102D67 !important; }
 input,textarea,[data-baseweb="select"] > div { border-radius:8px !important; }
+.top-brand { display:flex; align-items:center; justify-content:flex-end; width:100%; margin:0 0 8px; }
+.top-brand svg { width:116px; height:auto; flex:0 0 116px; }
+.legal-footer { margin-top:3.5rem; padding:22px 10px 10px; border-top:1px solid rgba(255,255,255,.24); text-align:center; color:#D1D5DB; font:italic 13px/1.65 Arial,sans-serif; }
+@media (max-width: 768px) {
+  .top-brand { margin-top:0; margin-bottom:5px; }
+  .top-brand svg { width:100px; flex-basis:100px; }
+  .legal-footer { font-size:11px; padding-left:4px; padding-right:4px; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -148,6 +156,17 @@ except Exception as exc:
     st.error("No fue posible iniciar la base de datos. Revisa la conexión y la configuración.")
     st.exception(exc)
     st.stop()
+
+st.markdown("""
+<div class="top-brand" aria-label="MAICO de México">
+  <svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México">
+    <path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
+    <path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
+    <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
+    <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888" stroke="#064675" stroke-width="1.8" stroke-linejoin="round" paint-order="stroke fill">de México</text>
+  </svg>
+</div>
+""", unsafe_allow_html=True)
 
 st.title("MAICO")
 st.caption("Gestión de clientes, estudios y citas")
@@ -297,3 +316,14 @@ elif menu == "Buscar":
             st.dataframe(consultar(f"""SELECT cl.nombre AS Cliente,c.fecha AS Fecha,c.hora AS Hora,c.motivo AS Motivo,c.estado AS Estado,c.notas AS Notas
                 FROM citas c JOIN clientes cl ON cl.id=c.cliente_id WHERE c.cliente_id IN ({marcas}) ORDER BY c.fecha,c.hora""", ids),
                 use_container_width=True, hide_index=True)
+
+st.markdown("""
+<div class="legal-footer">
+  Initial code and all additional changes are property and registered by<br>
+  Juan Enrique Cabello Vargas, PhD &amp; MSc.<br>
+  Conceptualized and created by<br>
+  Juan Enrique Cabello Vargas, PhD &amp; MSc.<br>
+  All rights reserved.<br>
+  Pax et Bonum.
+</div>
+""", unsafe_allow_html=True)
