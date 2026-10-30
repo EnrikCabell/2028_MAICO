@@ -14,8 +14,8 @@ st.sidebar.markdown("""
   <svg viewBox="0 0 320 190" role="img" aria-label="MAICO de México" style="width:100%;max-width:260px;height:auto;">
     <path d="M92 8 Q160 -8 228 8 L228 100 Q160 128 92 100 Z" fill="#064675"/>
     <path d="M92 72 C116 72 119 31 140 31 S164 91 184 91 S210 31 228 31" fill="none" stroke="white" stroke-width="13" stroke-linecap="round"/>
-    <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke fill">MAICO</text>
-    <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888">de México</text>
+    <text x="160" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="57" font-weight="600" letter-spacing="1" fill="#064675">MAICO</text>
+    <text x="160" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-style="italic" fill="#888888" stroke="#064675" stroke-width="1.8" stroke-linejoin="round" paint-order="stroke fill">de México</text>
   </svg>
 </div>
 """, unsafe_allow_html=True)
@@ -23,28 +23,28 @@ st.sidebar.markdown("""
 
 st.markdown("""
 <style>
-/* Panel izquierdo: azul rey */
+/* Panel izquierdo: gris */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #173A8A 0%, #102B68 100%);
+    background: #D1D5DB !important;
 }
 [data-testid="stSidebar"] * {
-    color: #FFFFFF !important;
+    color: #1F2937 !important;
 }
 [data-testid="stSidebar"] [data-testid="stRadio"] label {
-    color: #FFFFFF !important;
+    color: #1F2937 !important;
 }
 [data-testid="stSidebar"] [aria-checked="true"] {
     background-color: rgba(255,255,255,0.18);
     border-radius: 8px;
 }
-/* Panel derecho completo: gris */
+/* Panel derecho completo: azul */
 .stApp,
 [data-testid="stAppViewContainer"],
 [data-testid="stMain"],
 [data-testid="stMainBlockContainer"],
 section.main,
 section.main > div {
-    background-color: #D1D5DB !important;
+    background-color: #173A8A !important;
 }
 [data-testid="stHeader"] {
     background-color: #D1D5DB !important;
@@ -60,7 +60,7 @@ div[data-testid="stDataFrame"] {
     padding: 8px;
 }
 h1, h2, h3, p, label, [data-testid="stMarkdownContainer"] {
-    color: #1F2937;
+    color: #FFFFFF;
 }
 </style>
 """, unsafe_allow_html=True)
