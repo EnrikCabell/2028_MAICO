@@ -35,7 +35,8 @@ st.markdown("""
 [data-testid="stSidebar"] [role="radio"][aria-checked="true"] > div:first-child { background:#173A8A !important; border-color:#173A8A !important; }
 [data-testid="stSidebar"] [aria-checked="true"] { background:rgba(23,58,138,.10) !important; border-radius:9px; }
 .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"], [data-testid="stMainBlockContainer"], section.main, section.main > div { background:#173A8A !important; }
-[data-testid="stHeader"] { background:#D1D5DB !important; }
+[data-testid="stHeader"] { background:#173A8A !important; box-shadow:none !important; border:0 !important; }
+@media (max-width: 768px) { [data-testid="stHeader"] { background:#173A8A !important; box-shadow:none !important; border:0 !important; } }
 .block-container { padding:2rem clamp(1rem, 3vw, 3rem) 3rem; max-width:1500px; }
 h1,h2,h3,p,label,[data-testid="stMarkdownContainer"],[data-testid="stCaptionContainer"] { color:#FFFFFF !important; }
 [data-testid="stMetric"], [data-testid="stForm"], [data-testid="stExpander"],
